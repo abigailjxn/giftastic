@@ -14,19 +14,49 @@ var characters = [
   "Ness"
 ];
 
-$(document).ready(function() {
+function createButtons() {
+    ``
   for (var i = 0; i < characters.length; i++) {
     var gifButtons = $("<button>");
-    gifButtons.attr("data-character", characters[i]).text(characters[i]);
+    gifButtons
+      .attr("data-character", characters[i])
+      .text(characters[i])
+      .addClass("generatedButtons");
     console.log(gifButtons);
     $("#buttonslist").append(gifButtons);
   }
+}
 
+$(document).ready(function() {
+  createButtons();
   // Event listener on click - make call to AJAX and display gifs
   // api call
   // then append in a for loop
-  $("button").on("click", function() {
-    console.log("this");
+
+  $("#submitbutton").click(function(event) {
+    event.preventDefault();
+    var userInput = $("#userinput")
+      .val()
+      .trim();
+    console.log(userInput);
+    characters.push(userInput);
+    console.log(characters);
+    // console.log(characters)
+    createButtons();
+    
+    // var newButton = $("<button>");
+    // newButton
+    //   .attr("data-character", userInput)
+    //   .text(userInput)
+    //   .addClass("generatedButtons");
+    // console.log(newButton);
+    // $("#buttonslist").append(newButton);
+
+  
+  });
+
+  $(".generatedButtons").on("click", function() {
+    console.log(this);
     var character = $(this).attr("data-character");
     var queryURL =
       "https://api.giphy.com/v1/gifs/search?q=" +
@@ -60,7 +90,7 @@ $(document).ready(function() {
 
           // add event listener to play and pause gifs for on click of the gif
           // if not working check button function above and change class/id to be specific to submit vs gif buttons
-          
+
           $(characterImg).click(function() {
             var state = $(this).attr("data-state");
 
@@ -75,9 +105,11 @@ $(document).ready(function() {
             }
           });
         }
+       
       }
     });
   });
-});
+  // take user input and on click function, generate and push button to initial button array
+  
 
-// take user input and on click function, generate and push button to initial button array
+});
