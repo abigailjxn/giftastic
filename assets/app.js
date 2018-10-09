@@ -58,16 +58,20 @@ $(document).ready(function() {
           gifDiv.append(p);
           $("#giflist").prepend(gifDiv);
 
-          $("img").click(function() {
-        
+          // add event listener to play and pause gifs for on click of the gif
+          // if not working check button function above and change class/id to be specific to submit vs gif buttons
+          
+          $(characterImg).click(function() {
             var state = $(this).attr("data-state");
-        
+
             if (state === "still") {
               $(this).attr("src", $(this).attr("data-active"));
               $(this).attr("data-state", "active");
+              console.log("ACTIVATE");
             } else {
               $(this).attr("src", $(this).attr("data-still"));
               $(this).attr("data-state", "still");
+              console.log("BE STILL");
             }
           });
         }
@@ -75,8 +79,5 @@ $(document).ready(function() {
     });
   });
 });
-
-// add event listener to play and pause gifs for on click of the gif
-// if not working check button function above and change class/id to be specific to submit vs gif buttons
 
 // take user input and on click function, generate and push button to initial button array
