@@ -45,17 +45,36 @@ $(document).ready(function() {
           var rating = results[i].rating;
           var p = $("<p>").text("Rating:" + rating);
           var characterImg = $("<img>");
+
           characterImg.attr("src", results[i].images.fixed_height_still.url);
+          characterImg.attr("data-state", "still");
+          characterImg.attr(
+            "data-still",
+            results[i].images.fixed_height_still.url
+          );
+          characterImg.attr("data-active", results[i].images.fixed_height.url);
+
           gifDiv.append(characterImg);
           gifDiv.append(p);
           $("#giflist").prepend(gifDiv);
+
+          $("img").click(function() {
+        
+            var state = $(this).attr("data-state");
+        
+            if (state === "still") {
+              $(this).attr("src", $(this).attr("data-active"));
+              $(this).attr("data-state", "active");
+            } else {
+              $(this).attr("src", $(this).attr("data-still"));
+              $(this).attr("data-state", "still");
+            }
+          });
         }
       }
     });
   });
 });
-
-
 
 // add event listener to play and pause gifs for on click of the gif
 // if not working check button function above and change class/id to be specific to submit vs gif buttons
