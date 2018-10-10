@@ -10,12 +10,11 @@ var characters = [
   "Yoshi",
   "Kirby",
   "Captain Falcon",
-  "Star Fox",
-  "Ness"
+  "Fox McCloud",
+  "Toad"
 ];
 
 function createButtons() {
-  //   $("#buttonslist").empty();
   for (var i = 0; i < characters.length; i++) {
     var gifButtons = $("<button>");
     gifButtons
@@ -26,11 +25,11 @@ function createButtons() {
     $("#buttonslist").append(gifButtons);
     gifButtons.on("click", gifGenerator);
   }
-}
+};
 
 function clear() {
   $("#buttonslist").empty();
-}
+};
 
 function gifGenerator() {
   var character = $(this).attr("data-character");
@@ -49,7 +48,7 @@ function gifGenerator() {
       if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
         var gifDiv = $("<div>");
         var rating = results[i].rating;
-        var p = $("<p>").text("Rating:" + rating);
+        var p = $("<p>").text("Rating: " + rating);
         var characterImg = $("<img>");
 
         characterImg.attr("src", results[i].images.fixed_height_still.url);
@@ -59,6 +58,8 @@ function gifGenerator() {
           results[i].images.fixed_height_still.url
         );
         characterImg.attr("data-active", results[i].images.fixed_height.url);
+
+        characterImg.addClass("paper");
 
         gifDiv.append(characterImg);
         gifDiv.append(p);
@@ -83,7 +84,6 @@ function gifGenerator() {
       }
     }
   });
-  //   });
 }
 
 $(document).ready(function() {
