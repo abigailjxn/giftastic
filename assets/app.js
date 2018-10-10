@@ -15,7 +15,7 @@ var characters = [
 ];
 
 function createButtons() {
-    ``
+  $("#buttonslist").empty();
   for (var i = 0; i < characters.length; i++) {
     var gifButtons = $("<button>");
     gifButtons
@@ -27,12 +27,7 @@ function createButtons() {
   }
 }
 
-$(document).ready(function() {
-  createButtons();
-  // Event listener on click - make call to AJAX and display gifs
-  // api call
-  // then append in a for loop
-
+function appendNewButton() {
   $("#submitbutton").click(function(event) {
     event.preventDefault();
     var userInput = $("#userinput")
@@ -41,19 +36,27 @@ $(document).ready(function() {
     console.log(userInput);
     characters.push(userInput);
     console.log(characters);
-    // console.log(characters)
-    createButtons();
-    
-    // var newButton = $("<button>");
-    // newButton
-    //   .attr("data-character", userInput)
-    //   .text(userInput)
-    //   .addClass("generatedButtons");
-    // console.log(newButton);
-    // $("#buttonslist").append(newButton);
+
+    var newButton = $("<button>");
+    newButton
+      .attr("data-character",userInput)
+      .text(userInput)
+      .addClass("generatedButtons");
+    console.log(newButton);
+    $("#buttonslist").append(newButton);
+  });
 
   
-  });
+};
+
+$(document).ready(function() {
+  createButtons();
+  appendNewButton();
+  createButtons();
+
+  // Event listener on click - make call to AJAX and display gifs
+  // api call
+  // then append in a for loop
 
   $(".generatedButtons").on("click", function() {
     console.log(this);
@@ -105,11 +108,11 @@ $(document).ready(function() {
             }
           });
         }
-       
+
       }
     });
   });
   // take user input and on click function, generate and push button to initial button array
   
-
+  console.log($(".generatedButtons"));
 });
