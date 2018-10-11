@@ -3,6 +3,23 @@ header {
   text-align: center;
 }
 
+.container{
+  width: auto;
+
+}
+
+#buttonslist{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#giflist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
